@@ -1,2 +1,2 @@
-# tgbot
-Tgbot
+# chatbot
+Telegram chat bot
