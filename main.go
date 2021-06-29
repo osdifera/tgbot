@@ -37,13 +37,12 @@ func main() {
 
 	logger.Sugar().Info("Updater started successfully")
 	updater.StartCleanPolling()
-	//updater.Dispatcher.AddHandler(handlers.NewCommand("romestime", romesTime))
 	//updater.Dispatcher.AddHandler(handlers.NewCommand("price", usdPrice))
 
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)p", returnTokenPrice))
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)arb", executArbitrage))
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)0x",returnLiquidity))
-	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.ReturnTopHolders))
+	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)p", GetTokenPrice))
+	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)arb", GetArbitrage))
+	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)0x", GetLiquidity))
+	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.GetT0xa478c2975ab1ea89e8196811f51a7b7ade33eb11opHolders))
 	updater.Idle()
 }
 

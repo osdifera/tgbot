@@ -92,22 +92,22 @@ func getTopHolders(address string) string{
 	return utilities.BuildTopHoldersMessage(holders)
 }
 
-func returnTokenPrice(b ext.Bot, u *gotgbot.Update) error {
+func GetTokenPrice(b ext.Bot, u *gotgbot.Update) error {
 	b.SendMessage(u.Message.Chat.Id, getTokenPrice(u.EffectiveMessage.Text))
 	return nil
 }
 
-func executArbitrage(b ext.Bot, u *gotgbot.Update) error {
+func GetArbitrage(b ext.Bot, u *gotgbot.Update) error {
 	b.SendMessage(u.Message.Chat.Id, getTokenArbitrage(u.EffectiveMessage.Text))
 	return gotgbot.ContinueGroups{} // will keep executing handlers, even after having been caught by this one.
 }
 
-func returnLiquidity(b ext.Bot, u *gotgbot.Update) error {
+func GetLiquidity(b ext.Bot, u *gotgbot.Update) error {
 	b.SendMessage(u.Message.Chat.Id, getLiquidityForPair(u.EffectiveMessage.Text))
 	return gotgbot.ContinueGroups{}
 }
 
-func ReturnTopHolders(b ext.Bot, u *gotgbot.Update) error {
+func GetTopHolders(b ext.Bot, u *gotgbot.Update) error {
 	_,err := b.SendMessage(u.Message.Chat.Id, getTopHolders(u.EffectiveMessage.Text))
 	//return gotgbot.ContinueGroups{}
 	return err
