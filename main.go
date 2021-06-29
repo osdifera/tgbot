@@ -7,6 +7,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/handlers"
 	"github.com/joho/godotenv"
 	"github.com/oscaletta/chatbot/functions"
+	"github.com/oscaletta/chatbot/modules/help"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -32,8 +33,10 @@ func main() {
 		return
 	}
 
-	functions.LoadTokenList()
-	logger.Sugar().Info("Tokens list loaded")
+	help.LoadLiquidity(updater)
+
+	//functions.LoadTokenList()
+	//logger.Sugar().Info("Tokens list loaded")
 
 	logger.Sugar().Info("Updater started successfully")
 	updater.StartCleanPolling()
@@ -42,7 +45,7 @@ func main() {
 	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)p", GetTokenPrice))
 	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)arb", GetArbitrage))
 	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)0x", GetLiquidity))
-	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.GetT0xa478c2975ab1ea89e8196811f51a7b7ade33eb11opHolders))
+	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.GetTopHolders))
 	updater.Idle()
 }
 
