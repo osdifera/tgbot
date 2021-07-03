@@ -42,7 +42,6 @@ func main() {
 	//updater.Dispatcher.AddHandler(handlers.NewCommand("price", usdPrice))
 
 	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)p", GetTokenPrice))
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)arb", GetArbitrage))
 	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)0x", GetLiquidity))
 	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.GetTopHolders))
 	updater.Idle()
