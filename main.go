@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/oscaletta/chatbot/functions"
 	"github.com/oscaletta/chatbot/modules/help"
+	"github.com/oscaletta/chatbot/modules/welcome"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -34,9 +35,7 @@ func main() {
 	}
 
 	help.LoadLiquidity(updater)
-
-	//functions.LoadTokenList()
-	//logger.Sugar().Info("Tokens list loaded")
+	welcome.LoadWelcome(updater)
 
 	logger.Sugar().Info("Updater started successfully")
 	updater.StartCleanPolling()
