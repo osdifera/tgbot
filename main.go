@@ -4,10 +4,9 @@ import (
 	"os"
 
 	"github.com/PaulSonOfLars/gotgbot"
-	"github.com/PaulSonOfLars/gotgbot/handlers"
 	"github.com/joho/godotenv"
-	"github.com/oscaletta/chatbot/functions"
 	"github.com/oscaletta/chatbot/modules/help"
+	"github.com/oscaletta/chatbot/modules/token"
 	"github.com/oscaletta/chatbot/modules/welcome"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -36,14 +35,10 @@ func main() {
 
 	help.LoadLiquidity(updater)
 	welcome.LoadWelcome(updater)
+	token.LoadToken(updater)
 
 	logger.Sugar().Info("Updater started successfully")
 	updater.StartCleanPolling()
-	//updater.Dispatcher.AddHandler(handlers.NewCommand("price", usdPrice))
-
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)p", GetTokenPrice))
-	//updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)0x", GetLiquidity))
-	updater.Dispatcher.AddHandler(handlers.NewRegex("(?i)top",functions.GetTopHolders))
 	updater.Idle()
 }
 

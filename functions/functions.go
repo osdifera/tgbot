@@ -9,7 +9,6 @@ import (
 
 	"github.com/PaulSonOfLars/gotgbot"
 	"github.com/PaulSonOfLars/gotgbot/ext"
-	"github.com/oscaletta/chatbot/models/holder"
 	"github.com/oscaletta/chatbot/models/liquidity"
 	"github.com/oscaletta/chatbot/models/token"
 	"github.com/oscaletta/chatbot/utilities"
@@ -75,23 +74,6 @@ func getLiquidityForPair(pairAddress string) string{
 	return utilities.BuildLiquidityMessage(LiqResponse)
 }
 
-func getTopHolders(address string) string{
-	var holders []holder.Holder
-	
-	endpointURL := "http://localhost:8080/holders/"+address[3:]
-	resp, err := http.Get(endpointURL)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	defer resp.Body.Close()
-	bodyBytes, _ := ioutil.ReadAll(resp.Body)
-
-	json.Unmarshal(bodyBytes, &holders)
-	fmt.Println(holders)
-	return utilities.BuildTopHoldersMessage(holders)
-}
-
 func GetTokenPrice(b ext.Bot, u *gotgbot.Update) error {
 	b.SendMessage(u.Message.Chat.Id, getTokenPrice(u.EffectiveMessage.Text))
 	return nil
@@ -105,10 +87,4 @@ func GetArbitrage(b ext.Bot, u *gotgbot.Update) error {
 func GetLiquidity(b ext.Bot, u *gotgbot.Update) error {
 	b.SendMessage(u.Message.Chat.Id, getLiquidityForPair(u.EffectiveMessage.Text))
 	return gotgbot.ContinueGroups{}
-}
-
-func GetTopHolders(b ext.Bot, u *gotgbot.Update) error {
-	_,err := b.SendMessage(u.Message.Chat.Id, getTopHolders(u.EffectiveMessage.Text))
-	//return gotgbot.ContinueGroups{}
-	return err
 }

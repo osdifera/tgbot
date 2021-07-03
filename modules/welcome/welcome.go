@@ -14,6 +14,6 @@ func welcome(bot ext.Bot, u *gotgbot.Update, args []string) error {
 }
 
 func LoadWelcome(u *gotgbot.Updater) {
-	defer log.Println("Loading module welcome")
+	defer log.Println("Loading welcome module")
 	u.Dispatcher.AddHandler(handlers.NewPrefixArgsCommand("welcome", []rune{'!', '/'}, welcome))
 }
