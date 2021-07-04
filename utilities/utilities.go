@@ -30,17 +30,16 @@ func BuildArbitrageMessage(token token.Token) string {
 	var message string = "\n"
 	counter := 1
 	for _, ticker := range token.Tickers {
-		//for _, market := range ticker
-		message += " " + ticker.Market.Name + "\n"
+		message += " *" + ticker.Market.Name + "*\n"
 		for _, value := range ticker.ConvertedLast {
 			if counter == 1 {
-				message += "" + fmt.Sprintf("BTC: %f", value) + "\n"
+				message += "-" + fmt.Sprintf("BTC: %f", value) + "\n"
 			}
 			if counter == 2 {
-				message += "" + fmt.Sprintf("ETH: %f", value) + "\n"
+				message += "-" + fmt.Sprintf("ETH: %f", value) + "\n"
 			}
 			if counter == 3 {
-				message += "" + fmt.Sprintf("USD: %f", value) + "\n"
+				message += "-" + fmt.Sprintf("USD: %f", value) + "\n\n"
 			}
 			counter++
 		}

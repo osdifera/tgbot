@@ -8,6 +8,7 @@ import (
 	"github.com/oscaletta/chatbot/modules/help"
 	"github.com/oscaletta/chatbot/modules/token"
 	"github.com/oscaletta/chatbot/modules/welcome"
+	"github.com/oscaletta/chatbot/utilities"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -18,6 +19,7 @@ func init() {
 	if err != nil {
 		panic(err.Error())
 	}
+	utilities.LoadTokenList()
 }
 
 func main() {
