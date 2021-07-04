@@ -6,5 +6,6 @@ func LoadTokenList() {
 	TokenList["xor"] = "sora"
 	TokenList["val"] = "sora-validator-token"
 	TokenList["link"] = "chainlink"
+	TokenList["cqt"] = "covalent"
 	TokenList["shitcoin"] = "shitcoin"
 }

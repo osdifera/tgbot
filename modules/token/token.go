@@ -23,10 +23,9 @@ func LoadToken(u *gotgbot.Updater) {
 	log.Println("token module loaded")
 }
 
-//TODO: improve logic to accept any ticker
 func getPrice(b ext.Bot, u *gotgbot.Update) error {
 	log.Println("Getting arbitrage prices")
-	endpointURL := "https://api.coingecko.com/api/v3/coins/" + utilities.TokenList["xor"] + "/tickers"
+	endpointURL := "https://api.coingecko.com/api/v3/coins/" + utilities.TokenList[u.EffectiveMessage.Text[5:]] + "/tickers"
 	
 	resp, err := http.Get(endpointURL)
 	if err != nil {
